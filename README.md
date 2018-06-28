@@ -2,6 +2,9 @@
 
 > A Vue.js weather project
 
+![main](https://github.com/alice-0-kim/weather/blob/master/screenshots/main.png)
+![sunny](https://github.com/alice-0-kim/weather/blob/master/screenshots/sunny.png)
+![rainy](https://github.com/alice-0-kim/weather/blob/master/screenshots/rainy.png)
 ## Build Setup
 
 ``` bash
