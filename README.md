@@ -1,4 +1,4 @@
-# weather-project
+# Weather Web Application :sunny:
 
 > A Vue.js weather project
 
@@ -28,3 +28,11 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Get Started
+``` bash
+git clone https://github.com/alice-0-kim/weather.git
+cd weather
+npm run dev
+```
+Your project will be available at http://localhost:8080/#/.
