@@ -89,4 +89,19 @@ li {
 a {
   color: #42b983;
 }
+button {
+  padding: 7px 14px;
+  border-radius: 5px;
+  background: #d3f2ff;
+  border: none;
+  font-size: medium;
+  color: #2c3e50;
+  cursor: pointer;
+}
+button:hover {
+  background: #b1dbed;
+}
+* {
+  outline: none;
+}
 </style>
