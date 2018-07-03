@@ -4,10 +4,13 @@
     <img :src="url">
     <p>Latitude: {{ lat }}</p>
     <p>Longitude: {{ lon }}</p>
-    <button class="btn-v" @click="sendRealtimeData()">How's the weather like in Vancouver?</button>
-    <button class="btn-u" @click="sendForecastData()">How's the weather like in your location?</button>
-    <input type="text" v-model="latitude" placeholder="Your latitude">
-    <input type="text" v-model="longitude" placeholder="Your longitude">
+    <button id="btn-v" @click="sendRealtimeData()">How's the weather like in Vancouver?</button>
+    <button id="btn-u" @click="sendForecastData()">How's the weather like in your location?</button>
+    <label>Latitude</label>
+    <input type="text" v-model="latitude">
+    <label>Longitude</label>
+    <input type="text" v-model="longitude">
+    <button id="btn-r" @click="returnToStart()">&larr; Go back</button>
     <p>Today's temperature is {{ temp }} {{ units }}</p>
   </div>
 </template>
@@ -44,6 +47,15 @@ export default {
   //     });
   //   },
   methods: {
+    cleanUp () {
+      var inputs = document.getElementsByTagName('p')
+      Array.prototype.forEach.call(inputs, (el, index, array) => {
+        el.style.display = 'block'
+      })
+      document.getElementById('btn-v').style.display = 'none'
+      document.getElementById('btn-u').style.display = 'none'
+      document.getElementById('btn-r').style.display = 'block'
+    },
     sendRealtimeData () {
       axios({
         method: 'POST',
@@ -69,6 +81,7 @@ export default {
           this.url = require('../assets/rain.png')
         }
         this.units = result.data.temp.units
+        this.cleanUp()
       }, error => {
         console.error(error)
       })
@@ -98,9 +111,13 @@ export default {
           this.url = require('../assets/rain.png')
         }
         this.units = result.data.temp.units
+        this.cleanUp()
       }, error => {
         console.error(error)
       })
+    },
+    returnToStart () {
+      location.reload()
     }
   }
 }
@@ -122,34 +139,47 @@ li {
 a {
   color: #42b983;
 }
+div p {
+  display: none;
+}
+label {
+  position: absolute;
+  transition: .4s cubic-bezier(.25,.8,.25,1)
+}
 input[type="text"] {
   border: none;
   border-bottom: 1px solid seagreen;
+  margin-top: 5px;
+}
+label:hover {
+  transform: translateY(-18px) scale(.75);
 }
 button {
   padding: 7px 14px;
-  border-radius: 5px;
+  border-radius: 15px;
   background: #d3f2ff;
   border: none;
   font-size: medium;
   color: #2c3e50;
   cursor: pointer;
   display: block;
-  margin: 0 auto;
+  margin: 20px auto;
   transition: background 0.5s;
 }
-.btn-v {
-  background: #d3f2ff;
+#btn-v {
+  background: #c1e8c0;
 }
-.btn-v:hover {
-  background: #b1dbed;
+#btn-v:hover {
+  background: #a7d671;
 }
-.btn-u {
-  margin: 10px auto;
-  background: #e3ddff;
+#btn-u {
+  background: pink;
 }
-.btn-u:hover {
-  background: #c8c3e0;
+#btn-u:hover {
+  background: #ffa4bd;
+}
+#btn-r {
+  display: none;
 }
 * {
   outline: none;
